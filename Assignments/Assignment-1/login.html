@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Online Exam</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+form {
+	width:40%;
+	border:1px solid #ccc;
+}
+
+h2{
+  text-align: center;        
+}
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: deepskyblue;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+.container {
+  padding: 16px;
+ }
+
+.psw {
+  float: right;
+}
+    
+.stu-form{
+   padding-top: 8%; 
+   padding-left: 37%;
+}    
+</style>
+</head>
+<body>
+<br><br>
+<h2>Student Login Form</h2>
+<div class="stu-form">
+  <form action="quiz.html" method="GET">
+  <div class="container">
+    <label for="uname"><b>Username</b></label>
+    <input type="text" placeholder="Enter Username" name="uname" id="Username" required>
+    <label for="psw"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="psw" id="Password" required>
+    <p>New User? <a href="signup.html">Sign up</a>.<a class="psw" href="#">Forgot password?</a></p> 
+    <button type="submit">Login</button>
+  </div>
+  </form>
+</div>
+<script type="text/javascript">
+    function login() {
+        var uname = document.getElementById('Username').value;
+        var pass = document.getElementById('Password').value;
+        if(uname == " " && pass == " ") 
+            {
+                location.assign();
+            }
+         else 
+            {
+                window.alert("login failed");
+            }
+        }
+</script>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Online Exam</title>
+        <meta charset="utf-8">
+        <style>
+            #test{
+                border:1px solid black;
+                padding: 10px 40px 40px 40px;
+                background-color: whitesmoke;
+                width: 40%;
+                height: 250px;
+            }
+            h1{
+                text-align: center;
+                text-justify: auto;
+            }
+            .submit{
+                background-color:deepskyblue;
+                color: white;
+                border: 0px white solid;
+                height: 40px;
+                width:300px;
+             }
+            #que{
+                padding-top: 3%;
+                padding-left: 35%;
+            }
+            .option{
+                text-align: left;
+                padding-left: 40px;
+                padding-right: 20px;
+            }
+            body{ 
+             text-align: center; 
+             background-color: lightskyblue; 
+             font-family: sans-serif; 
+             font-weight: 100; 
+            } 
+            #clockdiv{ 
+             font-family: sans-serif; 
+             color: #fff; 
+             display: inline-block; 
+             font-weight: 100; 
+             text-align: center; 
+             font-size: 30px; 
+            }    
+            #clockdiv > div{ 
+             padding: 10px; 
+             border-radius: 3px; 
+             background-color: powderblue; 
+             display: inline-block; 
+             color: black;
+             padding: 10px;
+            } 
+            #clockdiv div > span{ 
+             padding: 15px; 
+             border-radius: 3px; 
+             background-color: white; 
+             display: inline-block; 
+            } 
+            smalltext{ 
+             padding-top: 5px; 
+             font-size: 16px; 
+            } 
+        </style>
+    </head>
+    <body>
+        <script>
+           var pos = 0, test, test_status, question, choice, choices, chA, chB, chC, correct = 0;
+            var questions=[
+              ["What is full form of HTML?","Hyper Text Markup Language","Home Tool Markup Language","Hyperlinks and Text Markup Language","A"],
+              ["Who is making the Web Standards?","The World Wide Web Consortium","Google","Mozilla","A"],
+              ["Choose the correct HTML element for largest heading:","head","h1","h6","B"],
+              ["What is the correct HTML element for inserting a line break?","b","br","lb","B"],
+              ["Inside which HTML element do we put the JavaScript?","js","javascript","script","C"]
+            ];
+            function f(x){
+                return document.getElementById(x);
+            }
+            var deadline = new Date().getTime()+600000; 
+                var x = setInterval(function() { 
+                var now = new Date().getTime(); 
+                var t = deadline - now;  
+                var hours = Math.floor((t%(1000 * 60 * 60 * 24))/(1000 * 60 * 60)); 
+                var minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60)); 
+                var seconds = Math.floor((t % (1000 * 60)) / 1000);  
+                document.getElementById("hour").innerHTML =hours; 
+                document.getElementById("minute").innerHTML = minutes;  
+                document.getElementById("second").innerHTML =seconds;  
+                if (t < 0) { 
+                    clearInterval(x); 
+                    document.getElementById("demo").innerHTML = "TIME UP";  
+                    document.getElementById("hour").innerHTML ='0'; 
+                    document.getElementById("minute").innerHTML ='0' ;  
+                    document.getElementById("second").innerHTML = '0'; } 
+                }, 1000);
+            function renderQuestion(){
+                test = f("test");
+                if(pos >= questions.length){
+                    test.innerHTML = "<h1>You got "+correct+" of "+questions.length+" questions correct</h1>";
+                    f("test_status").innerHTML = "Test Completed";
+                    pos = 0;
+                    correct = 0;
+                    return false;
+                }
+                f("test_status").innerHTML = "<br><h1>Question "+(pos+1)+" of "+questions.length+"</h1>";
+                question = questions[pos][0];
+                chA = questions[pos][1];
+                chB = questions[pos][2];
+                chC = questions[pos][3];
+                test.innerHTML = "<div class='option'><h2>"+question+"</h2><br></div>";
+                test.innerHTML += "<div class='option'><input type='checkbox' Name='choices' value='A'> "+chA+"<br></div>";
+                test.innerHTML += "<div class='option'><input type='checkbox' Name='choices' value='B'> "+chB+"<br></div>";
+                test.innerHTML += "<div class='option'><input type='checkbox' Name='choices' value='C'> "+chC+"<br><br><br></div>";
+                test.innerHTML += "<div class='option'><button class='submit' onclick='checkAnswer()'>Submit Answer</button></div>";
+            }
+            function checkAnswer(){
+                choices = document.getElementsByName("choices");
+                for(var i=0; i<choices.length; i++){
+                    if(choices[i].checked){
+                        choice = choices[i].value;
+                    }
+                }
+                if(choice == questions[pos][4]){
+                    correct++;
+                }
+                pos++;
+                renderQuestion();
+            }
+            window.addEventListener("load", renderQuestion, false);
+        </script>
+        <div id="clockdiv"> 
+        <div> 
+            <span class="hours" id="hour"></span> 
+            <div class="smalltext">Hours</div> 
+        </div> 
+        <div> 
+            <span class="minutes" id="minute"></span> 
+            <div class="smalltext">Minutes</div> 
+        </div> 
+        <div> 
+            <span class="seconds" id="second"></span> 
+            <div class="smalltext">Seconds</div> 
+        </div> 
+        </div> 
+            <h2 id="test_status"></h2>
+            <div id="que">
+            <div id="test"></div>
+        </div>
+    </body>
+</html>
