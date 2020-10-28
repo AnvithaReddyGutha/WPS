@@ -1,7 +1,7 @@
 package in.ac.vce;
 import java.sql.*;
 
-public class MySqlConnection 
+public class MySqlDbConnec 
 {
 	public Connection MySqlConnec() throws Exception{
 		String url = "jdbc:mysql://localhost:3306/test";
