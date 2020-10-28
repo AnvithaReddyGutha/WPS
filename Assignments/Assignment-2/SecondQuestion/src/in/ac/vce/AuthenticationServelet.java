@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 		description = "Performs authentication based on user inputs", 
 		urlPatterns = { "/auth" }, 
 		
-public class CheckAuthenticationServelet extends HttpServlet {
+public class AuthenticationServelet extends HttpServlet {
 	static String username,password;
 	
 	private static final long serialVersionUID = 1L;

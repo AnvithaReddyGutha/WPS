@@ -1,7 +1,7 @@
 package in.ac.vce;
 import java.sql.*;
 
-public class MySQLDBCon 
+public class MySQLDBConnec 
 {
 	public Boolean authenticate(String username, String password) throws Exception{
 		
