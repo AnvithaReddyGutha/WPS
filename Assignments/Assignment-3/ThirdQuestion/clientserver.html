@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>RestApi Info</title>
+        <script>
+            var baseurl="https://reqres.in/api/users";
+            function loadData()
+            {
+                var xmlHttp=new XMLHttpRequest();
+                xmlHttp.open("GET",baseurl,true);
+                xmlHttp.onreadystatechange=function()
+                {
+                    if(xmlHttp.readyState===4 && xmlHttp.status===200)
+                    {
+                        var dataArray=JSON.parse(xmlHttp.responseText);
+                        var tabletop='<table><tr><th>Id</th><th>Name</th><th>Year</th><th>Color</th><th>PantoneValue</th></tr>'
+                        var main="";
+                        for(i=0;i<6;i++)
+                        {
+                            main+="<tr><td>"+dataArray.data[i].id+"</td><td>"+dataArray.data[i].name+"</td><td>"
+                            +dataArray.data[i].year+"</td><td>"+dataArray.data[i].color+"</td><td>"
+                            +dataArray.data[i].pantone_value+"</td></tr>"
+                        }
+                        var tablebtm="</table>";
+                        var tbl=tabletop+main+tablebtm;
+                        document.getElementById("tableInfo").innerHTML=tbl;
+                    }
+                };
+                xmlHttp.send();
+            }
+            window.onload =function()
+            {
+                loadData();
+            }
+        </script>
+    </head>
+    <body>
+        <div id="tableInfo"></div>
+    </body>
+</html>
